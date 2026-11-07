@@ -8,6 +8,7 @@ from backend.app.routers import answer_options
 from backend.app.routers import quizzes
 from backend.app.routers import leaderboard
 from fastapi.middleware.cors import CORSMiddleware
+from backend.app.routers import external_api
 
 app = FastAPI(
     title="QuizFlix API",
@@ -33,6 +34,7 @@ app.include_router(questions.router)
 app.include_router(answer_options.router)
 app.include_router(quizzes.router)
 app.include_router(leaderboard.router)
+app.include_router(external_api.router)
 
 
 @app.get("/")
