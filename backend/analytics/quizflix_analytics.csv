@@ -1,0 +1,23 @@
+﻿attempt_id,player_id,category,difficulty,total_questions,correct_answers,score,duration_seconds
+1001,player_01,Movies,Easy,5,4,40,95
+1002,player_02,Music,Medium,5,3,30,110
+1003,player_03,Web Series,Hard,5,2,20,140
+1004,player_04,Celebrities,Easy,5,5,50,85
+1005,player_05,Movies,Medium,5,3,30,105
+1006,player_06,Music,Hard,5,4,40,130
+1007,player_07,Web Series,Easy,5,4,40,92
+1008,player_08,Celebrities,Medium,5,2,20,118
+1009,player_09,Movies,Hard,5,1,10,
+1010,player_10,Music,Easy,5,5,50,80
+1011,player_11,Web Series,Medium,5,3,30,115
+1012,player_12,,Hard,5,2,20,150
+1013,player_13,Celebrities,Easy,5,4,40,88
+1014,player_14,Movies,Medium,5,2,20,125
+1015,player_15,Music,Medium,5,3,30,
+1016,player_16,Web Series,Hard,5,1,10,160
+1017,player_17,Celebrities,Hard,5,3,30,135
+1018,player_18,Movies,Easy,5,5,50,75
+1019,player_19,Music,Easy,5,4,40,90
+1020,player_20,Web Series,Medium,5,2,20,120
+1021,player_21,Celebrities,Medium,5,4,40,105
+1018,player_18,Movies,Easy,5,5,50,75

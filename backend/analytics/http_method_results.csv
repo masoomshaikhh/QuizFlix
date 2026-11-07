@@ -1,0 +1,6 @@
+method,status_code,response_time_ms,valid_json
+GET,200,13.89,True
+POST,405,21.05,True
+PUT,405,12.59,True
+PATCH,405,22.09,True
+DELETE,405,14.11,True

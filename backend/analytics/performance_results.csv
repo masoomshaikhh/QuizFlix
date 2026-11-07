@@ -1,0 +1,5 @@
+endpoint,test_type,requests,successful,failed,error_rate_percent,minimum_ms,maximum_ms,average_ms,median_ms,p95_ms,throughput_rps,total_time_seconds
+/health,Sequential,100,100,0,0.0,2.61,32.61,16.67,16.96,25.42,59.41,1.68
+/health,Concurrent,100,100,0,0.0,5.16,26.38,12.16,11.02,23.13,693.15,0.14
+/api/leaderboard/,Sequential,100,100,0,0.0,5.52,69.51,21.12,20.71,36.4,47.03,2.13
+/api/leaderboard/,Concurrent,100,100,0,0.0,25.11,226.06,72.87,50.02,196.65,134.1,0.75

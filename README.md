@@ -1,4 +1,4 @@
-
+﻿
 # QuizFlix – Movie & Music Trivia Gaming Platform
 
 QuizFlix is an interactive trivia gaming platform where users can test their knowledge of movies, music, web series and celebrities through multiple-choice quizzes.
@@ -200,7 +200,7 @@ The current test suite covers:
 - Quiz history.
 - Test-Driven Development of accuracy calculation.
 
-**Latest verified test result:** 31 tests passed.
+**Latest verified test result:** 44 tests passed.
 
 ## Version Control
 
@@ -221,3 +221,17 @@ The main objective of QuizFlix is to provide an engaging entertainment trivia ex
 **Masoom Shaikh**
 
 QuizFlix – Software Engineering Assignment
+
+
+
+## External API Integration
+QuizFlix integrates with the Apple iTunes Search API to retrieve movie, music and TV show metadata. The integration uses Requests, processes JSON responses and handles timeouts and connection errors.
+
+## Data Analytics and Machine Learning
+The project includes Pandas, NumPy and Matplotlib for data analysis and visualization. A Scikit-learn Decision Tree Classifier demonstrates machine learning using simulated quiz-performance data.
+
+## Performance Testing
+QuizFlix includes sequential and concurrent API testing to measure response times, throughput, error rates and response-time percentiles.
+
+## Continuous Integration
+GitHub Actions is configured to install dependencies and automatically execute the Pytest suite on pushes and Pull Requests targeting the main branch.

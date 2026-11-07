@@ -1,0 +1,47 @@
+
+name: QuizFlix CI - Automated Testing
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: "3306"
+      DB_USER: ci_user
+      DB_PASSWORD: ci_password
+      DB_NAME: quizflix_test
+      SECRET_KEY: ci-only-secret-key-for-testing
+
+    steps:
+
+      - name: Checkout QuizFlix Repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+
+      - name: Display Python Version
+        run: python --version
+
+      - name: Run Automated Tests
+        run: python -m pytest -v
