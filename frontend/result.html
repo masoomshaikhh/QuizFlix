@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizFlix | Quiz Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <h1 class="logo">QuizFlix</h1>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <button id="logoutBtn">Logout</button>
+        </nav>
+    </header>
+
+    <main class="result-container">
+
+        <section class="result-card">
+            <div class="result-icon">🏆</div>
+
+            <h1>Quiz Completed!</h1>
+            <p class="result-subtitle">Here is how you performed.</p>
+
+            <div class="result-score">
+                <h2 id="finalScore">0</h2>
+                <p>Total Score</p>
+            </div>
+
+            <div class="result-stats">
+                <div>
+                    <h3 id="correctAnswers">0</h3>
+                    <p>Correct Answers</p>
+                </div>
+
+                <div>
+                    <h3 id="totalQuestions">0</h3>
+                    <p>Total Questions</p>
+                </div>
+
+                <div>
+                    <h3 id="finalAccuracy">0%</h3>
+                    <p>Accuracy</p>
+                </div>
+            </div>
+
+            <h2 id="resultMessage">Well Played!</h2>
+
+            <button id="dashboardBtn">Back to Dashboard</button>
+        </section>
+
+    </main>
+
+    <script src="result.js"></script>
+
+</body>
+</html>

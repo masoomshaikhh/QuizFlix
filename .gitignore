@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.pytest_cache/
+# Temporary testing scripts
+backend/test_db.py
+backend/test_password.py
+backend/test_password_db.py

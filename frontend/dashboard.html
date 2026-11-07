@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizFlix | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <h1 class="logo">QuizFlix</h1>
+
+        <nav>
+            <a href="dashboard.html">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <button id="logoutBtn">Logout</button>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+            <h2>Welcome back, <span id="username">Player</span>!</h2>
+            <p>Ready to test your entertainment knowledge?</p>
+        </section>
+
+        <section class="stats-section">
+            <div class="stat-card">
+                <h3>Quizzes Played</h3>
+                <p id="quizzesPlayed">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Score</h3>
+                <p id="totalScore">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Accuracy</h3>
+                <p id="accuracy">0%</p>
+            </div>
+        </section>
+
+        <section id="categories" class="categories-section">
+            <h2>Choose Your Category</h2>
+            <p>Select your favourite entertainment category.</p>
+
+            <div class="category-grid">
+
+                <div class="category-card" data-category="Movies">
+                    <div class="category-icon">🎬</div>
+                    <h3>Movies</h3>
+                    <p>Hollywood blockbusters and iconic films.</p>
+                    <button class="category-btn">Explore</button>
+                </div>
+
+                <div class="category-card" data-category="Music">
+                    <div class="category-icon">🎵</div>
+                    <h3>Music</h3>
+                    <p>Artists, albums, songs and music trivia.</p>
+                    <button class="category-btn">Explore</button>
+                </div>
+
+                <div class="category-card" data-category="Web Series">
+                    <div class="category-icon">📺</div>
+                    <h3>Web Series</h3>
+                    <p>Test your knowledge of popular shows.</p>
+                    <button class="category-btn">Explore</button>
+                </div>
+
+                <div class="category-card" data-category="Celebrities">
+                    <div class="category-icon">⭐</div>
+                    <h3>Celebrities</h3>
+                    <p>Actors, singers, directors and famous personalities.</p>
+                    <button class="category-btn">Explore</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="difficulty-section">
+            <h2>Select Difficulty</h2>
+            <div class="difficulty-options">
+                <button class="difficulty-btn" data-difficulty="Easy">Easy</button>
+                <button class="difficulty-btn" data-difficulty="Medium">Medium</button>
+                <button class="difficulty-btn" data-difficulty="Hard">Hard</button>
+            </div>
+            <p id="selectionMessage">Choose a category and difficulty to begin.</p>
+            <button id="startQuizBtn" disabled>Start Quiz</button>
+        </section>
+
+        <section id="leaderboard" class="extra-section">
+            <h2>Leaderboard</h2>
+            <p>See how you rank against other QuizFlix players.</p>
+            <button id="leaderboardBtn">View Leaderboard</button>
+        </section>
+
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

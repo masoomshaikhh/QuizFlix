@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizFlix | Play Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <h1 class="logo">QuizFlix</h1>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <button id="quitQuizBtn">Quit Quiz</button>
+        </nav>
+    </header>
+
+    <main class="quiz-container">
+
+        <section class="quiz-header">
+            <p id="quizCategory">Loading category...</p>
+            <h2 id="quizDifficulty">Loading difficulty...</h2>
+            <p id="questionProgress">Question 1 of 5</p>
+        </section>
+
+        <section class="quiz-progress">
+            <div id="progressBar"></div>
+        </section>
+
+        <section class="question-card">
+            <h2 id="questionText">Loading question...</h2>
+
+            <div id="optionsContainer" class="options-container">
+                <!-- Options will be loaded using JavaScript -->
+            </div>
+        </section>
+
+        <div class="quiz-navigation">
+            <button id="nextQuestionBtn" disabled>Next Question</button>
+            <button id="submitQuizBtn" hidden>Submit Quiz</button>
+        </div>
+
+        <p id="quizMessage"></p>
+
+    </main>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
