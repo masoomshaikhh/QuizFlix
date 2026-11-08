@@ -39,14 +39,27 @@ The following diagram shows the development and testing phases used to organise 
 
 ```mermaid
 flowchart LR
-    A["Requirements Analysis"] --> B["System Design"]
-    B --> C["High-Level Architecture Design"]
-    C --> D["Low-Level Module Design"]
-    D --> E["Coding and Implementation"]
-    E --> F["Unit Testing"]
-    F --> G["Integration Testing"]
-    G --> H["System Testing"]
-    H --> I["Acceptance Testing"]
+    subgraph V["Verification - Development"]
+        direction TB
+        A["Requirements Analysis"]
+        B["System Design"]
+        C["High-Level Architecture Design"]
+        D["Low-Level Module Design"]
+        A --> B --> C --> D
+    end
+
+    E["Coding and Implementation"]
+
+    subgraph T["Validation - Testing"]
+        direction BT
+        F["Unit Testing"]
+        G["Integration Testing"]
+        H["System Testing"]
+        I["Acceptance Testing"]
+        F --> G --> H --> I
+    end
+
+    D --> E --> F
 
     A -. "Corresponds to" .-> I
     B -. "Corresponds to" .-> H
@@ -146,13 +159,22 @@ The implementation converts the approved requirements and design into working ap
 
 # 5. TESTING PHASES
 
-## 5.1 Unit Testing
+## 5.1 Unit Testing and Automated Testing
 
 Unit tests verify individual functions and modules.
 
-QuizFlix unit tests cover scoring and accuracy calculations, authentication-related behaviour, quiz validation and external API service behaviour.
+QuizFlix automated tests cover:
 
-Pytest is used as the testing framework.
+- Scoring and accuracy calculations.
+- Authentication-related behaviour.
+- Registration validation.
+- Quiz creation and validation.
+- Answer submission.
+- CRUD operations.
+- External API service behaviour.
+- Quiz history.
+
+Pytest is used as the testing framework. The automated test suite includes unit-level and API/integration-oriented tests.
 
 The latest verified local test run reported:
 
@@ -172,7 +194,7 @@ Areas addressed through the implementation and automated tests in QuizFlix inclu
 - The external API router and its service layer.
 - CRUD operations involving application data.
 
-Frontend and backend API communication is also part of the final browser-level verification.
+Frontend and backend API communication was also verified through browser-level testing.
 
 ## 5.3 System Testing
 
@@ -188,23 +210,44 @@ The project test activities cover:
 - Quiz history.
 - Leaderboard retrieval.
 - External entertainment searches.
+- Logout and authentication protection.
 
 Functional and performance testing activities are documented in separate reports.
 
 ## 5.4 Acceptance Testing
 
-Acceptance testing considers whether the application supports the intended user workflows.
+Acceptance testing evaluates whether the completed application supports the intended user workflows.
 
-The main workflows identified for final user-level verification are:
+Browser-level functional verification was performed using the application interface.
 
-1. A user registers and logs in.
-2. The user selects a quiz category and difficulty.
-3. The user starts and completes a quiz.
-4. The system validates submitted answers and calculates the result.
-5. The user reviews the score and answer explanations.
-6. The user views quiz history and the leaderboard.
+The following workflows were successfully tested:
 
-These workflows should be checked through the application interface as part of the final acceptance review.
+1. A new user registers an account.
+2. The registered user logs in successfully.
+3. The dashboard displays the user's information and quiz options.
+4. The user selects a quiz category and difficulty.
+5. The system starts a quiz with multiple-choice questions.
+6. The user selects answers and submits the completed quiz.
+7. The system calculates and displays the score and accuracy.
+8. The result page displays answer reviews and available explanations.
+9. Dashboard statistics update after quiz completion.
+10. The leaderboard displays player rankings and performance information.
+11. Quiz History displays previous attempts.
+12. Refreshing Quiz History retrieves updated attempt records.
+13. The user can navigate back to the dashboard.
+14. Logout successfully ends the user session.
+15. Direct access to the dashboard after logout redirects the user to the login page.
+
+The browser-level verification also covered all four quiz categories:
+
+- Movies.
+- Music.
+- Web Series.
+- Celebrities.
+
+A newly registered account was also used to verify the registration and login workflow.
+
+These activities confirm that the main user-facing application workflows were successfully verified in the browser.
 
 # 6. TEST-DRIVEN DEVELOPMENT
 
@@ -269,6 +312,8 @@ The V-Model also has limitations:
 The V-Model provides the SDLC structure used to organise QuizFlix requirements analysis, system design, architecture design, module design, coding and corresponding testing activities.
 
 Pytest supports automated verification, while GitHub Actions automates execution of the test suite during the configured Git workflow.
+
+The completion of browser-level functional verification, together with automated and performance testing activities, provides evidence of the implemented application's functionality.
 
 The use of the V-Model, supported by TDD and Continuous Integration, provides a structured approach to developing and testing the QuizFlix Movie and Music Trivia Gaming Platform.
 

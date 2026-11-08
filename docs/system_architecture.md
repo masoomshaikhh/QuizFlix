@@ -33,6 +33,13 @@ The system provides:
 - Administrative content management.
 - External entertainment metadata search.
 
+The application supports four main quiz categories:
+
+1. Movies.
+2. Music.
+3. Web Series.
+4. Celebrities.
+
 # 2. ARCHITECTURAL OVERVIEW
 
 QuizFlix follows a client-server architecture. The frontend communicates with the FastAPI backend through HTTP requests and receives JSON responses.
@@ -63,6 +70,7 @@ flowchart TB
         HTML["HTML"]
         CSS["CSS"]
         JS["JavaScript"]
+
         UI --- HTML
         UI --- CSS
         UI --- JS
@@ -77,12 +85,15 @@ flowchart TB
 
         MAIN --> AUTH
         MAIN --> ROUTERS
-        MAIN --> EXT
         ROUTERS --> SERVICES
+        SERVICES --> EXT
+    end
+
+    subgraph DATA["Data Access Layer"]
+        ORM["SQLAlchemy ORM"]
     end
 
     subgraph DATABASE["Database Layer"]
-        ORM["SQLAlchemy ORM"]
         MYSQL[("MySQL Database")]
     end
 
@@ -90,8 +101,7 @@ flowchart TB
 
     USER --> UI
     UI <-->|"HTTP / JSON"| MAIN
-    ROUTERS <-->|"Database Operations"| ORM
-    SERVICES --> ORM
+    SERVICES <-->|"Database Operations"| ORM
     ORM <-->|"SQL Queries"| MYSQL
     EXT <-->|"HTTPS / JSON"| APPLE
 ```
@@ -108,7 +118,16 @@ It is developed using:
 - CSS for styling and layout.
 - JavaScript for client-side functionality and API communication.
 
-The frontend provides the interfaces for user registration, login, dashboard navigation, quiz participation, and result presentation.
+The frontend provides the following interfaces:
+
+- Login page for user authentication.
+- Registration page for new account creation.
+- Dashboard for category selection, user information, statistics and leaderboard.
+- Quiz interface for displaying questions and answer options.
+- Result interface for displaying scores and answer reviews.
+- Quiz History section for displaying previous quiz attempts.
+
+The dashboard also provides a refresh option for retrieving updated quiz history records.
 
 ## 4.2 API and Application Layer
 
@@ -128,6 +147,7 @@ The backend contains routers responsible for:
 - Question management.
 - Answer-option management.
 - Quiz operations.
+- Quiz history.
 - Leaderboard retrieval.
 - External API searches.
 
@@ -151,6 +171,8 @@ Passlib and bcrypt are used for password hashing.
 
 Passwords are stored as hashes rather than plain-text values.
 
+Authenticated requests use bearer-token authentication to access protected endpoints.
+
 ## 4.4 Service Layer
 
 The service layer contains reusable application logic.
@@ -171,6 +193,8 @@ The scoring implementation includes:
 - Score calculation.
 - Accuracy calculation.
 - Quiz result generation.
+
+Each correct answer contributes 10 points.
 
 **External API Service**
 
@@ -210,6 +234,8 @@ The QuizFlix database contains seven main tables:
 
 Primary keys and foreign keys establish relationships between the entities.
 
+The database structure supports user authentication, category management, question retrieval, quiz attempts, answer storage, result generation and personal quiz history.
+
 The database structure is documented separately in:
 
 `docs/database_design_and_erd.md`
@@ -240,22 +266,48 @@ The integration includes request validation, timeout handling, and error respons
 6. During login, the submitted password is verified against the stored password hash.
 7. Following successful authentication, the backend generates a JWT access token.
 8. The frontend uses the access token for protected API requests.
+9. The authenticated user is redirected to the dashboard.
 
 ## 5.2 Quiz Participation Flow
 
 1. The authenticated user selects a quiz category.
-2. The user selects a difficulty level and the required number of questions.
+2. The user selects a difficulty level.
 3. The frontend sends the quiz-start request to the backend.
 4. The backend validates the request and retrieves matching questions.
 5. A quiz attempt is created and the assigned questions are recorded.
 6. The selected questions and answer options are returned to the frontend.
-7. The user submits the selected answers.
+7. The user selects answers and submits the completed quiz.
 8. The backend validates the submitted answers and quiz attempt.
 9. The scoring service calculates the score and accuracy.
 10. The backend stores the submitted answers and completed attempt information.
 11. The result is returned to the frontend for display.
+12. The dashboard statistics and quiz history can then reflect the completed attempt.
 
-## 5.3 External API Search Flow
+The currently browser-tested quiz flow presents four questions per attempt.
+
+## 5.3 Quiz History Flow
+
+1. The authenticated user opens the dashboard.
+2. The user navigates to the Quiz History section.
+3. The frontend sends an authenticated request to the quiz history endpoint.
+4. The backend identifies the authenticated user.
+5. The backend retrieves the user's previous quiz attempts from the database.
+6. The attempt records are returned to the frontend in JSON format.
+7. The frontend displays the records in a history table.
+8. The user can refresh the history to retrieve updated records.
+
+Quiz history is restricted to the authenticated user's own attempts.
+
+## 5.4 Leaderboard Flow
+
+1. The user opens the leaderboard section on the dashboard.
+2. The frontend sends a request to the leaderboard endpoint.
+3. The backend retrieves the relevant quiz performance information.
+4. The backend processes the leaderboard data.
+5. The ranking information is returned to the frontend.
+6. The frontend displays player rankings and performance details.
+
+## 5.5 External API Search Flow
 
 1. The user or frontend initiates an entertainment search.
 2. The frontend sends a request to the external API endpoint.
@@ -288,6 +340,19 @@ The following technologies are used in the QuizFlix application:
 | Machine Learning | Scikit-learn |
 | Version Control | Git and GitHub |
 | Continuous Integration | GitHub Actions |
+
+## 6.1 Data Science and Machine Learning Components
+
+The project also includes academic data analysis and machine-learning demonstrations.
+
+These components use:
+
+- Pandas and NumPy for data processing.
+- Matplotlib for data visualization.
+- Scikit-learn for machine-learning implementation.
+- A Decision Tree model for the quiz-performance classification demonstration.
+
+The analytics and machine-learning demonstrations use simulated quiz-performance data. They are supporting academic components and are separate from the main live quiz request flow.
 
 # 7. DEPLOYMENT AND EXECUTION ENVIRONMENT
 
@@ -339,6 +404,8 @@ The latest verified local test execution recorded:
 
 **44 tests passed, 0 failed.**
 
+The automated test suite uses temporary SQLite databases for relevant isolated tests, while MySQL is used as the application's primary persistent development database.
+
 GitHub Actions is configured to install project dependencies and execute the automated test suite when changes are pushed to the main branch or when pull requests target the main branch.
 
 The project also includes separate functional and performance testing reports.
@@ -348,6 +415,10 @@ The project also includes separate functional and performance testing reports.
 QuizFlix uses a layered client-server architecture that separates the presentation, application, service, data access, and database responsibilities.
 
 The FastAPI backend coordinates authentication, quiz operations, scoring, and external API integration. SQLAlchemy manages interactions with the MySQL database, while the HTML, CSS, and JavaScript frontend provides the user interface.
+
+The architecture supports important application features such as user authentication, four entertainment quiz categories, quiz history, leaderboard functionality and automated score calculation.
+
+The additional data science and machine-learning components demonstrate the use of analytical techniques alongside the main software application.
 
 This architecture supports modular development, testing, maintenance, and future improvements to the QuizFlix Movie and Music Trivia Gaming Platform.
 

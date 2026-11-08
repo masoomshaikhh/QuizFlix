@@ -1,18 +1,18 @@
 # QUIZFLIX
-## Lab 8 – Performance Testing and API Testing Report
+# LAB 8 - PERFORMANCE TESTING AND API TESTING REPORT
 
-**Project:** QuizFlix – Movie and Music Trivia Gaming Platform  
-**Student:** Masoom Shaikh  
-**Programming Language:** Python 3.13.7  
-**Backend Framework:** FastAPI  
-**Database:** MySQL  
-**Testing Libraries:** Requests, Pandas, NumPy, Pytest  
-**Testing Environment:** Windows  
+**Project:** QuizFlix - Movie and Music Trivia Gaming Platform
+**Student:** Masoom Shaikh
+**Programming Language:** Python 3.13.7
+**Backend Framework:** FastAPI
+**Database:** MySQL
+**Testing Libraries:** Requests, Pandas, NumPy, Pytest
+**Testing Environment:** Windows
 **Testing Date:** 7 November 2026
 
 ---
 
-## 1. Introduction
+## 1. INTRODUCTION
 
 Performance testing and API testing are important software testing activities used to evaluate the responsiveness, reliability and behaviour of an application.
 
@@ -25,7 +25,7 @@ The testing focused on the following endpoints:
 - `/health`
 - `/api/leaderboard/`
 
-## 2. Objectives
+## 2. OBJECTIVES
 
 The main objectives of this lab are:
 
@@ -39,7 +39,7 @@ The main objectives of this lab are:
 8. Verify HTTP status codes and JSON responses.
 9. Evaluate API behaviour under multiple requests.
 
-## 3. Testing Environment
+## 3. TESTING ENVIRONMENT
 
 | Component | Details |
 |---|---|
@@ -54,11 +54,11 @@ The main objectives of this lab are:
 | Development Server | Uvicorn |
 | Local Backend | http://127.0.0.1:8000 |
 
-## 4. Performance Testing Methodology
+## 4. PERFORMANCE TESTING METHODOLOGY
 
 Performance testing was performed using a custom Python script named:
 
-`performance_test.py`
+`run_performance.py`
 
 The script measures the performance of two QuizFlix API endpoints.
 
@@ -95,7 +95,7 @@ Requests are sent one after another. The response time of each request is record
 
 Multiple requests are executed simultaneously using Python's ThreadPoolExecutor with 10 worker threads.
 
-## 5. Performance Metrics
+## 5. PERFORMANCE METRICS
 
 The following metrics were calculated:
 
@@ -113,13 +113,13 @@ The following metrics were calculated:
 
 Formula:
 
-Throughput = Total Successful and Failed Requests / Total Execution Time
+Throughput = Total Requests / Total Execution Time
 
 **Error Rate:**
 
-Error Rate (%) = (Failed Requests / Total Requests) × 100
+Error Rate (%) = (Failed Requests / Total Requests) x 100
 
-## 6. Sequential Performance Testing Results
+## 6. SEQUENTIAL PERFORMANCE TESTING RESULTS
 
 A total of 100 sequential requests were sent to each endpoint.
 
@@ -159,7 +159,7 @@ Endpoint: `/api/leaderboard/`
 | Throughput | 40.71 requests/second |
 | Total Execution Time | 2.46 seconds |
 
-## 7. Concurrent Performance Testing Results
+## 7. CONCURRENT PERFORMANCE TESTING RESULTS
 
 Concurrent testing was performed using 10 worker threads with 100 requests per endpoint.
 
@@ -199,7 +199,7 @@ Endpoint: `/api/leaderboard/`
 | Throughput | 138.82 requests/second |
 | Total Execution Time | 0.72 seconds |
 
-## 8. Sequential and Concurrent Performance Comparison
+## 8. SEQUENTIAL AND CONCURRENT PERFORMANCE COMPARISON
 
 | Endpoint | Sequential Average | Concurrent Average |
 |---|---:|---:|
@@ -212,12 +212,12 @@ Endpoint: `/api/leaderboard/`
 2. Both endpoints successfully processed all 100 concurrent requests.
 3. No failed requests were recorded during either performance test.
 4. The health endpoint demonstrated lower average response time during concurrent testing.
-5. The leaderboard endpoint experienced higher response times under concurrent load, indicating additional processing and database-related overhead.
+5. The leaderboard endpoint experienced higher response times under concurrent load. This may reflect the additional work involved in retrieving and processing leaderboard information.
 6. The leaderboard's maximum concurrent response time was 246.33 ms.
 
 The results represent measurements from a local development environment and a single test execution.
 
-## 9. HTTP Method Testing
+## 9. HTTP METHOD TESTING
 
 HTTP method testing was initially performed against the `/health` endpoint to verify its supported methods and response handling.
 
@@ -237,7 +237,7 @@ The `/health` endpoint only supports GET requests. Therefore, POST, PUT, PATCH a
 
 These results do not indicate that the other HTTP methods are unavailable throughout the QuizFlix application.
 
-## 10. CRUD API Method Testing
+## 10. CRUD API METHOD TESTING
 
 To further verify the application's CRUD functionality, automated tests were executed against the category API using a temporary in-memory SQLite database.
 
@@ -267,7 +267,7 @@ The test file was:
 
 All five automated CRUD tests passed.
 
-## 11. Automated Test Execution
+## 11. AUTOMATED TEST EXECUTION
 
 The CRUD API tests were executed using:
 
@@ -282,7 +282,7 @@ python -m pytest backend/tests/test_crud_methods.py -v -s
 - Failed: 0
 - Execution time: 1.65 seconds
 
-## 12. Generated Output Files
+## 12. GENERATED OUTPUT FILES
 
 The performance testing script generated:
 
@@ -291,15 +291,15 @@ The performance testing script generated:
 
 These files contain the recorded performance measurements and HTTP method results.
 
-The Python script used for testing is:
+The Python script used for performance testing is:
 
-`backend/analytics/performance_test.py`
+`backend/analytics/run_performance.py`
 
 The CRUD testing script is:
 
 `backend/tests/test_crud_methods.py`
 
-## 13. Limitations
+## 13. LIMITATIONS
 
 1. Performance tests were conducted on a local development environment rather than a production server.
 2. Only two read-only endpoints were used for sequential and concurrent performance measurements.
@@ -310,7 +310,7 @@ The CRUD testing script is:
 
 Therefore, these results should not be interpreted as production-scale capacity measurements.
 
-## 14. Conclusion
+## 14. CONCLUSION
 
 Performance and API testing were successfully conducted for the QuizFlix application.
 
@@ -323,3 +323,7 @@ The HTTP method testing verified the behaviour of GET, POST, PUT, PATCH and DELE
 The automated CRUD test suite achieved five passing tests with no failures.
 
 Overall, the testing demonstrated the current API's functional correctness and measured its response behaviour under the tested local conditions.
+
+---
+
+**END OF PERFORMANCE TESTING REPORT**

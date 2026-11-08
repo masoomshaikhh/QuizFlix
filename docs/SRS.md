@@ -135,7 +135,7 @@ Administrative endpoints require administrator authorization.
 
 | Component | Technology |
 |---|---|
-| Operating System | Windows |
+| Operating System | Windows (Development and Testing Environment) |
 | Frontend | HTML, CSS and JavaScript |
 | Backend Language | Python |
 | Backend Framework | FastAPI |
@@ -183,7 +183,7 @@ The system shall:
 - Reject duplicate email addresses.
 - Reject duplicate usernames.
 - Hash passwords before storing them.
-- Reject passwords exceeding the configured bcrypt byte limit.
+- Enforce password length constraints supported by the configured password-hashing implementation.
 
 ## FR-02: User Login
 
@@ -225,9 +225,10 @@ The system shall allow authenticated users to start a quiz by selecting:
 
 - A category.
 - A difficulty level.
-- The number of questions.
 
 The system shall randomly select questions matching the requested category and difficulty.
+
+The current browser-tested quiz flow presents four questions per attempt.
 
 The system shall reject a request when the selected category does not exist or insufficient questions are available.
 
@@ -360,7 +361,7 @@ The frontend consists of the following pages:
 |---|---|
 | Login | User authentication |
 | Registration | New account creation |
-| Dashboard | Categories, profile and leaderboard |
+| Dashboard | Categories, profile, leaderboard and personal quiz history |
 | Quiz | Display questions and answer options |
 | Result | Display score and answer review |
 
@@ -373,7 +374,6 @@ The application interacts with:
 - SQLAlchemy ORM.
 - Apple iTunes Search API.
 - Browser-based JavaScript fetch operations.
-- GitHub Actions for automated testing.
 
 ## 5.3 Communication Interfaces
 

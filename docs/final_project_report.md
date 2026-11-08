@@ -1,4 +1,5 @@
 # QUIZFLIX
+
 # MOVIE AND MUSIC TRIVIA GAMING PLATFORM
 
 ## SOFTWARE ENGINEERING PROJECT REPORT
@@ -12,6 +13,7 @@
 **Institution:** Goa University
 
 **Department:** MSc Integrated Data Science [3rd year]
+
 **Academic Year:** 2026–2027
 
 **Submission Date:** 17 November 2026
@@ -746,7 +748,7 @@ The CI demonstration included an intentional test assertion error.
 
 The workflow correctly failed when the incorrect assertion was pushed.
 
-After correcting the assertion, the workflow completed successfully with all 44 tests passing.
+After correcting the assertion, the workflow completed successfully with 44 tests passing.
 
 This demonstrated the ability of Continuous Integration to identify test failures and verify corrections.
 
@@ -999,7 +1001,9 @@ The results demonstrate the successful implementation of the principal applicati
 
 The project combines web application development with database management, API integration, automated testing, analytics and version control.
 
-However, the automated test results and local performance measurements should be interpreted within their respective test environments. Final browser-level acceptance testing remains a separate validation activity.
+**Manual browser-level acceptance testing was also completed using Google Chrome in the local development environment.** The testing covered user registration, login, dashboard navigation, all four entertainment categories (Movies, Music, Web Series and Celebrities), quiz participation, answer submission, score and accuracy calculation, answer review, dashboard statistics, leaderboard functionality, Quiz History display and refresh, logout, and protected dashboard access.
+
+These results demonstrate that the main user workflows were verified in the local development environment. The automated test results and local performance measurements should still be interpreted within their respective test environments and are not production-scale guarantees.
 
 ---
 
@@ -1012,7 +1016,7 @@ Although QuizFlix implements its principal functionality, certain limitations re
 3. The current performance measurements were obtained in a local development environment.
 4. The analytics dataset contains simulated records rather than actual application usage data.
 5. The machine-learning model was trained and evaluated using simulated data.
-6. Frontend accessibility and browser-level testing can be expanded.
+6. Broader browser compatibility and accessibility testing can be expanded.
 7. The application has not been evaluated as a production-scale deployment.
 8. Additional monitoring, backup and deployment infrastructure may be required for a real-world production environment.
 

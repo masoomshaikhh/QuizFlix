@@ -48,7 +48,7 @@ The main objectives are:
 | Operating System | Windows |
 | Programming Language | Python 3.13.7 |
 | Backend Framework | FastAPI |
-| Database | MySQL |
+| Application Database | MySQL |
 | ORM | SQLAlchemy |
 | Testing Framework | Pytest 9.2.0 |
 | API Testing | FastAPI TestClient |
@@ -57,6 +57,8 @@ The main objectives are:
 | Browser | Google Chrome |
 | API Documentation | FastAPI Swagger UI |
 | Version Control | Git and GitHub |
+
+**Database clarification:** MySQL is used as the application's primary persistent database. Automated API tests use an isolated temporary SQLite database through test configuration and dependency overrides.
 
 # 4. AUTOMATED FUNCTIONAL TEST CASES
 
@@ -156,7 +158,7 @@ The backend history endpoint was already implemented and was used to retrieve th
 |---|---|---|---|---|
 | MB13 | Retrieve history through API | Previous attempts returned | HTTP 200 and quiz history returned in Swagger UI | PASS |
 | MB14 | Display Quiz History interface | Previous attempts displayed in dashboard | History table displayed successfully | PASS |
-| MB15 | Display attempt details | Score, category, difficulty, answers, status and date displayed | Attempt information displayed correctly | PASS |
+| MB15 | Display attempt details | Attempt ID, category, difficulty, score, correct answers, accuracy, status and date displayed | Attempt information displayed correctly | PASS |
 | MB16 | Refresh Quiz History | Latest attempts retrieved again | New quiz attempt appeared after refreshing | PASS |
 
 ## 5.5 Logout and Access Control Testing
@@ -203,15 +205,17 @@ python -m pytest -v
 
 The latest verified execution produced the following results:
 
-| Testing Module | Test Cases Passed |
+| Test Module | Automated Tests Passed |
 |---|---:|
-| Authentication Testing | 7 |
-| CRUD Operations Testing | 5 |
-| External API Testing | 8 |
-| Quiz API Testing | 10 |
-| Scoring Testing | 11 |
-| TDD Accuracy Testing | 3 |
+| `test_auth.py` | 7 |
+| `test_crud_methods.py` | 5 |
+| `test_external_api.py` | 8 |
+| `test_quizzes.py` | 10 |
+| `test_scoring.py` | 11 |
+| `test_tdd_scoring.py` | 3 |
 | **Total** | **44** |
+
+The 29 numbered functional test cases in Section 4 describe the main testing scenarios. Some tests use parameterized inputs, and the complete automated suite also includes additional scoring and TDD tests. Therefore, the number of collected automated test executions is 44.
 
 ## 6.1 Final Automated Test Results
 
@@ -223,11 +227,23 @@ The latest verified execution produced the following results:
 | Warnings | 1 |
 | Execution Time | 7.91 seconds |
 
-**Final Result: 44 Passed, 0 Failed.**
+<badge color="success">44 Passed, 0 Failed</badge>
 
 The test execution completed successfully.
 
 One non-fatal Starlette deprecation warning involving HTTPX and the test client was reported. The warning did not cause any test failures.
+
+## 6.2 Continuous Integration Verification
+
+The project's GitHub Actions CI workflow was also successfully executed.
+
+The verified workflow completed the automated test suite with:
+
+- 44 tests passed.
+- 0 failed tests.
+- Successful workflow execution.
+
+This verifies that the automated test suite can also be executed through the configured GitHub Actions workflow.
 
 # 7. IMPORTANT TESTING OBSERVATIONS
 
@@ -246,7 +262,7 @@ The following observations were recorded during functional testing:
 11. The leaderboard successfully displays player rankings.
 12. Quiz History retrieves and displays previous quiz attempts.
 13. The Refresh History button retrieves updated quiz records.
-14. Logout removes the authentication token.
+14. Logout removes the authentication token from the frontend session.
 15. Unauthenticated users are redirected away from the dashboard.
 16. All four entertainment categories were tested through the browser.
 17. New user registration and login were successfully verified.
